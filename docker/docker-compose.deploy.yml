@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - "./conf:/etc/nginx/conf.d"
+
+  app:
+    build: .
+    expose:
+      - "80"
+    volumes:
+      - ".:/app"

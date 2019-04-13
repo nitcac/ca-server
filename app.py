@@ -5,7 +5,7 @@ api = responder.API()
 
 @api.route("/")
 def greet_world(req, resp):
-    resp.text = "root page"
+    resp.text = "root!!!"
 
 @api.route('/ws', websocket=True)
 async def websocket(ws):
@@ -19,4 +19,4 @@ async def websocket(ws):
     await ws.close()
 
 if __name__ == '__main__':
-    api.run(address='0.0.0.0')
+    api.run(address='0.0.0.0', port=80)
