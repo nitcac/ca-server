@@ -1,9 +1,24 @@
 version: '3'
 services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - "POSTGRES_USER=$DB_USER"
+      - "POSTGRES_PASSWORD=$PASSWORD"
+
   app:
     build: .
     ports:
       - "80:80"
+    environment:
+      - "DATABASE_HOST=db"
+      - "DATABASE_PORT=5432"
+      - "DATABASE_USER=$DB_USER"
+      - "DATABASE_PASSWORD=$PASSWORD"
+    depends_on:
+      - db
     volumes:
       - ".:/app"
     tty: true
