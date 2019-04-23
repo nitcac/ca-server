@@ -12,6 +12,8 @@ CA Hack-a-thon Server
 
 ## how to run-server
 
+**これは最新版じゃないです**
+
 1. docker install
 多分、Windowsなら公式サイトから落としてくればできます。（WindowsでやったことないのでQiitaなどで調べていただきたい...）
 2. wsc install
