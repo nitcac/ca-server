@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Sequence
+from sqlalchemy import Column, Integer, String
 
 from . import Base
 
@@ -6,9 +6,18 @@ from . import Base
 class HTBResult(Base):
     __tablename__ = 'htb_results'
     
-    result_id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
+    result_id = Column(Integer, primary_key=True,  autoincrement=True)
     player_name = Column(String(32))
-    point = Column(Integer)
+    score = Column(Integer)
 
     def __repr__(self):
-        return f'<Model: htb_result, {{id: {self.result_id}, pt: {self.point}}}>'
+        return f'<Model: htb_result, {{id: {self.result_id}, score: {self.score}}}>'
+
+    __str__ = __repr__
+
+    def serialize(self):
+        return {
+            'result_id': self.result_id,
+            'player_name': self.player_name,
+            'score': self.score
+        }

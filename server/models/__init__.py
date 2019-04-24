@@ -12,7 +12,15 @@ def get_db_uri():
         password=db['password'], host=db['host'], port=db['port'], name=db['name']
     )
 
-_engine = create_engine(get_db_uri(), echo=DEBUG)
-Session = sessionmaker(bind=_engine)
-
+engine = create_engine(get_db_uri(), echo=DEBUG)
+Session = sessionmaker(bind=engine)
 Base = declarative_base()
+
+
+class SessionManager:
+    def __enter__(self):
+        self.session = Session()
+        return self.session
+
+    def __exit__(self, ex_type, ex_value, trace):
+        self.session.close()
