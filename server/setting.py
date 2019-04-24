@@ -1,15 +1,18 @@
 import os
 
 
-def get_db_setting():
+_default_db_data = {
+    'user':  'hamada', 
+    'password':  '', 
+    'host':  'db', 
+    'port':  '5432', 
+    'name':  'CADB'
+}
+
+def get_db_setting(defaults=_default_db_data):
     DATABASE = {
         'dbms': 'postgresql',
         'driver': 'psycopg2',
-        # 'name': os.environ['DATABASE_NAME'],
-        # 'host': os.environ['DATABASE_HOST'],
-        # 'port': os.environ['DATABASE_PORT'],
-        # 'user': os.environ['DATABASE_USER'],
-        # 'password': os.environ['DATABASE_PASSWORD']
     }
 
     db_keys = (
@@ -23,6 +26,8 @@ def get_db_setting():
     for (envkey, dictkey) in db_keys:
         if envkey in os.environ:
             DATABASE[dictkey] = os.environ[envkey]
+        else:
+            DATABASE[dictkey] = defaults[dictkey]
 
     return DATABASE
 
