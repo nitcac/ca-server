@@ -1,10 +1,19 @@
 from server import api
-from server.models.htb import HTBResult
 from server.models import SessionManager
+from server.models.htb import HTBResult
 
 
 @api.route('/api/htb/ranking')
 class HTBRankingView:
+    def on_get(self, req, resp):
+        with SessionManager() as session:
+            scores = session.query(HTBResult).order_by(HTBResult.score).all()
+            scores.reverse()
+
+        N = min(10, len(scores))
+        resp.media = [s.serialize() for s in scores[:N]]
+        resp.status_code = api.status_codes.HTTP_200
+
     async def on_post(self, req, resp):
         data = await req.media()
 
