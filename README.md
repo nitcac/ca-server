@@ -7,33 +7,41 @@ CA Hack-a-thon Server
 ## need
 
 * docker / docker-compose
-* [wsc](https://github.com/danielstjules/wsc)
+* [wsc](https://github.com/danielstjules/wsc)（WebSocketを利用する場合）
   * これはWebSocketのDEBUG用のツール
 
-## how to run-server
+## debug-setup
 
-1. docker install
-多分、Windowsなら公式サイトから落としてくればできます。（WindowsでやったことないのでQiitaなどで調べていただきたい...）
-2. wsc install
-`npm` を使ってやるなら上記リンクの通り
+まず `.env` というファイルを用意する。
+以下を実行した後、 `.env` の値を好きなものに変更する。
 
 ```
-$ npm install -g wsc
+> cp .env.sample .env
 ```
 
-3. run `docker-compose up`
-割と時間がかかるので注意
-`app_1  | INFO: Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)` みたいなのが出れば多分OK
-4. test
-`http://127.0.0.1:80/` にHTTP通信でアクセスすると `root!!!` って返ってくる
-`http://127.0.0.1:80/ws` にwscなどでアクセスして、JSON形式のデータを送ると、全要素が出力される
+`DBPASSWORD` のみ空値でも問題ない。
 
-こんな感じ
+次に以下を実行しコンテナを生成、その後別のターミナルからコンテナにアタッチする。
+
 ```
->> wsc http://127.0.0.1:80/ws
-Connected to http://127.0.0.1:80/ws
-> {"hoge": "123", "fuga": "456", "json": "yaml"}
-< 123
-< 456
-< yaml
+> docker-compose up
+
+# コンテナにアタッチするとき
+> docker exec -it ca-server_app_1 bash
 ```
+
+アタッチした後、以下を実行すると `localhost:80` にサーバが立ち上がってくれるようになる。
+
+```
+> python3 app.py   # コンテナで
+```
+
+もしこれでサーバが立ち上がらない場合は、 `docker-compose` を停止した後、以下を実行してみる。
+
+```
+> docker-compose stop   # composeの停止
+> docker-compose down -v
+> docker-compose up --build
+```
+
+これでも解決しなかったらhmdに言ってね :love:

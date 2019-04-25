@@ -5,7 +5,7 @@ import json
 
 @api.route('/')
 def greet_world(req, resp):
-    resp.text = "root!!!"
+    resp.text = "root!!"
 
 @api.route('/ws', websocket=True)
 async def websocket(ws):
@@ -17,3 +17,8 @@ async def websocket(ws):
             for key in data.keys():
                 await ws.send_text(data[key])
     await ws.close()
+
+@api.route('/hoge')
+class HogeView:
+    def on_request(self, req, resp):
+        resp.text = "hoge"

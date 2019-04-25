@@ -1,0 +1,7 @@
+docker/
+log/
+
+.venv/
+.vscode/
+
+.env.sample
