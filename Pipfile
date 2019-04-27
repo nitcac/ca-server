@@ -11,6 +11,7 @@ responder = "*"
 jinja2 = "*"
 sqlalchemy = "*"
 psycopg2-binary = "*"
+pycryptodome = "*"
 
 [requires]
 python_version = "3.7"
