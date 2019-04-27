@@ -12,36 +12,37 @@ CA Hack-a-thon Server
 
 ## debug-setup
 
-まず `.env` というファイルを用意する。
-以下を実行した後、 `.env` の値を好きなものに変更する。
+### 1. `Dockerfile` と `docker-compose.yml` の変更
+
+`develop` ブランチのデフォルトの `Dockerfile` と `docker-compose.yml` は開発用のものになっているため、変更する必要がある。
+まず `./docker` から `Dockerfile.deploy` と `docker-compose.deploy.yml` をコピーする。
 
 ```
-> cp .env.sample .env
+> cp ./docker/Dockerfile.deploy ./Dockerfile
+> cp ./docker/docker-compose.deploy.yml ./docker-compose.yml
 ```
 
+### 2. `.env` の用意
+
+`./env.sample` というファイルをコピーして `.env` を用意する必要がある。
+コピーしたあと中身の値を変更する。
 `DBPASSWORD` のみ空値でも問題ない。
 
-次に以下を実行しコンテナを生成、その後別のターミナルからコンテナにアタッチする。
-
 ```
-> docker-compose up
-
-# コンテナにアタッチするとき
-> docker exec -it ca-server_app_1 bash
+> cp env.sample .env
 ```
 
-アタッチした後、以下を実行すると `localhost:80` にサーバが立ち上がってくれるようになる。
+### 3. コンテナの実行
+
+コンテナを個別に実行しデバッグ用に立ち上げる。
+以下の順で実行する。
 
 ```
-> python3 app.py   # コンテナで
+> docker-compose up -d db
+> docker-compose up -d app
+> docker-compose up -d web
 ```
 
-もしこれでサーバが立ち上がらない場合は、 `docker-compose` を停止した後、以下を実行してみる。
+これで `http://127.0.0.1:80/` にアクセスできるようになる
 
-```
-> docker-compose stop   # composeの停止
-> docker-compose down -v
-> docker-compose up --build
-```
-
-これでも解決しなかったらhmdに言ってね :love:
+これでアクセスできなかったらhmdに言ってね :love:
