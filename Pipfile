@@ -12,6 +12,7 @@ jinja2 = "*"
 sqlalchemy = "*"
 psycopg2-binary = "*"
 pycryptodome = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"
