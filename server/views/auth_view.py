@@ -10,7 +10,7 @@ import secrets
 from sqlalchemy.orm.exc import NoResultFound
 
 
-@api.route('/api/auth/')
+@api.route('/api/auth/token')
 def get_unique_token(req, resp):
     unique_token = secrets.token_hex()
     token = Token(unique_token=unique_token)
@@ -26,7 +26,7 @@ def get_unique_token(req, resp):
 
 @api.route('/api/auth')
 class Authorization:
-    def on_post(self, req, resp):
+    def on_request(self, req, resp):
         # get params
         headers = req.headers
 
