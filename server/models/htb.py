@@ -1,9 +1,9 @@
+from . import Base
+
 import datetime
 
 from sqlalchemy import Column, DateTime, Integer, String
 from sqlalchemy.sql.functions import current_timestamp
-
-from . import Base
 
 
 class HTBResult(Base):
