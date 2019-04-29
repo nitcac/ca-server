@@ -21,6 +21,7 @@ services:
       DATABASE_USER: $DBUSER 
       DATABASE_NAME: $DBNAME
       DATABASE_PASSWORD: $DBPASSWORD
+      SECRET_KEY: $SECRET_KEY
     depends_on:
       - db
     volumes:
