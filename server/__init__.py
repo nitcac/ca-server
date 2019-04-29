@@ -5,5 +5,6 @@ api = API()
 
 from .views import (
     test_view,
-    htb_view
+    htb_view,
+    auth_view
 )
