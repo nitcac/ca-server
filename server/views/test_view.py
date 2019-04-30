@@ -1,11 +1,13 @@
 from server import api
 
 import json
+import base64
 
 
 @api.route('/')
 def greet_world(req, resp):
     resp.text = "root!!"
+
 
 @api.route('/ws', websocket=True)
 async def websocket(ws):
@@ -18,7 +20,11 @@ async def websocket(ws):
                 await ws.send_text(data[key])
     await ws.close()
 
+
 @api.route('/hoge')
 class HogeView:
-    def on_request(self, req, resp):
+    hoge = "fuga"
+    async def on_request(self, req, resp):
+        print(req.headers)
+        print(resp.headers)
         resp.text = "hoge"

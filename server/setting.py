@@ -32,3 +32,5 @@ def get_db_setting(defaults=_default_db_data):
     return DATABASE
 
 DEBUG = True
+
+SECRET_KEY = os.environ['SECRET_KEY']

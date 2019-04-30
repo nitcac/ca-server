@@ -1,8 +1,8 @@
+from server.setting import get_db_setting, DEBUG
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-
-from server.setting import get_db_setting, DEBUG
 
 
 def get_db_uri():

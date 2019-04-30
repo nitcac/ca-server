@@ -10,20 +10,30 @@ services:
       - 15432:5432
     volumes:
       - ./conf/db/init:/docker-entrypoint-initdb.d
+      - ./log/db/data:/var/lib/postgresql/data
+
+  web:
+    image: nginx:latest
+    depends_on:
+      - app
+    ports:
+      - 80:80
+    volumes:
+      - ./conf/web:/etc/nginx/conf.d
+      - ./log/web:/var/log/nginx
 
   app:
     build: .
-    ports:
-      - 80:80
+    expose: 
+      - 80
     environment:
       DATABASE_HOST: db
       DATABASE_PORT: 5432
       DATABASE_USER: $DBUSER 
       DATABASE_NAME: $DBNAME
       DATABASE_PASSWORD: $DBPASSWORD
+      SECRET_KEY: $SECRET_KEY
     depends_on:
       - db
     volumes:
       - .:/app
-    tty: true
-    stdin_open: true
