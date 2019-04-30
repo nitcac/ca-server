@@ -1,1 +1,0 @@
-docker exec -it cahacka_app_1 bash
