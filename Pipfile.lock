@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "142e8e203c1ffab3af1abb84919a05459d68b669c0d7d622314782fb09f820a4"
+            "sha256": "2bcfd6ce5aef502b82a3b85dd43e106cdb0af224e373ddbc80f0e85e12c89e77"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -42,20 +42,6 @@
                 "sha256:8da0d3f15748c8ed6e68914ba5b8f6dd5dff5afbe137950d07103575df0bce73"
             ],
             "version": "==0.7.2"
-        },
-        "asgiref": {
-            "hashes": [
-                "sha256:48afe222aefece5814ae90aae394964eada5a4604e67f9397f7858e8957e9fdf",
-                "sha256:60c783a7994246b2e710aa2f0a2f7fcfacf156cffc7b50f7074bfd97c9046db3"
-            ],
-            "version": "==3.1.2"
-        },
-        "async-timeout": {
-            "hashes": [
-                "sha256:0c3c816a028d47f659d6ff5c745cb2acf1f966da1fe5c19c77a70282b25f4c5f",
-                "sha256:4291ca197d287d274d0b6cb5d6f8f8f82d434ed288f962539ff18cc9012f9ea3"
-            ],
-            "version": "==3.0.1"
         },
         "certifi": {
             "hashes": [
@@ -191,6 +177,13 @@
             ],
             "version": "==1.12.0"
         },
+        "pkcs7": {
+            "hashes": [
+                "sha256:b683994a7d6404cf82840639605b7208884aa2367f84cb0ae731e32d4a1c5eff"
+            ],
+            "index": "pypi",
+            "version": "==0.1.2"
+        },
         "promise": {
             "hashes": [
                 "sha256:2ebbfc10b7abf6354403ed785fe4f04b9dfd421eb1a474ac8d187022228332af",
@@ -305,11 +298,11 @@
         },
         "responder": {
             "hashes": [
-                "sha256:8418d015874ad82ddb2da31c4fe82ca42a7d62462325097d79ceb907c0622e02",
-                "sha256:a18454d517551d2788acbac2557948ea6729d0c837a676e3ff7a57863190743d"
+                "sha256:717ad3d85999007066aac62ff822913452940f9679a8ae6b77597e2e7c841ec4",
+                "sha256:a8936a250620f99aa8f88813963d433f32c82acba81f1b45ae23f3dd84a3a219"
             ],
             "index": "pypi",
-            "version": "==1.3.0"
+            "version": "==1.3.1"
         },
         "rfc3986": {
             "hashes": [
@@ -377,7 +370,7 @@
                 "sha256:c48692bf4587ce281d641087658eca275a5ad3b63c78297bbded96570ae9ce8f",
                 "sha256:fefc3b2b947c99737c348887db2c32e539160dcbeb7af9aa6b53db7a283538fe"
             ],
-            "markers": "sys_platform != 'win32'",
+            "markers": "sys_platform != 'win32' and sys_platform != 'cygwin' and sys_platform != 'cli'",
             "version": "==0.12.2"
         },
         "websockets": {

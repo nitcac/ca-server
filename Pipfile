@@ -13,6 +13,7 @@ sqlalchemy = "*"
 psycopg2-binary = "*"
 pycryptodome = "*"
 requests = "*"
+pkcs7 = "*"
 
 [requires]
 python_version = "3.7"

@@ -38,10 +38,10 @@ class Authorization:
 
         else:
             # get enc and iv
-            denc = headers['encrypted']
-            div = headers['iv']
+            encrypted = headers['encrypted']
+            iv = headers['iv']
 
-            text = decrypt_payload(denc, div)
+            text = decrypt_payload(encrypted, iv)
 
             # search message in  table
             with SessionManager() as session:
@@ -78,10 +78,10 @@ def token_authentication(headers):
         return (False, message)
     else:
         # get enc and iv
-        denc = headers['encrypted']
-        div = headers['iv']
+        encrypted = headers['encrypted']
+        iv = headers['iv']
 
-        text = decrypt_payload(denc, div)
+        text = decrypt_payload(encrypted, iv)
 
         # search message in  table
         try:
