@@ -5,15 +5,6 @@ from server.models.htb import HTBResult
 
 @api.route('/api/htb/ranking')
 class HTBRankingView:
-    def on_get(self, req, resp):
-        with SessionManager() as session:
-            scores = session.query(HTBResult).order_by(HTBResult.score).all()
-            scores.reverse()
-
-        N = min(10, len(scores))
-        resp.media = [s.serialize() for s in scores[:N]]
-        resp.status_code = api.status_codes.HTTP_200
-
     async def on_post(self, req, resp):
         data = await req.media()
 
@@ -42,5 +33,13 @@ class HTBRankingView:
                 session.add(result)
                 session.commit()
 
-            resp.media = {'message': 'Good Request .'}
+                scores = session.query(HTBResult).order_by(HTBResult.score).all()
+                scores.reverse()
+
+            N = min(10, len(scores))
+            
+            resp.media = {
+                'message': 'Good Request .',
+                'results': [s.serialize() for s in scores[:N]]
+            }
             resp.status_code = api.status_codes.HTTP_201
